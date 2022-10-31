@@ -60,24 +60,20 @@ class Cycling extends Workout {
   }
 
   calcSpeed() {
-    this.pace = this.distance / this.duration ;
-    return this.pace*60;
+    this.speed = (this.distance / this.duration) * 60 ;
+    return this.speed;
   }
 
 }
 
 
 
-const run1 = new Running([27, 83], 5.2, 24, 178);
-const cycling1 = new Cycling([27, 83], 5.2, 24, 178);
-
-console.log(run1, cycling1);
 
 class App {
   #map;
   #mapEvent;
   #mapZoomLevel  =20;
-  #workouts = [];
+  #workouts =[];
   constructor() {
     this._getPosition();
     this._getLocalStorage();
@@ -156,7 +152,6 @@ class App {
       }
 
       workout = new Running([lat, lng], distance, duration, cadence);
-      this.#workouts.push(workout);
     }
     if (type == 'cycling') {
       const elevation = +inputElevation.value;
@@ -171,8 +166,8 @@ class App {
     this._renderWorkout(workout);
     inputDistance.focus();
     this._hideForm()
-
     this._setLocalStorage();
+
 
 
 
@@ -272,11 +267,6 @@ class App {
       this._renderWorkout(work);
     })
   }
-
-
-  
-
-  
 }
 
 const app = new App();
